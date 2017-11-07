@@ -2,24 +2,25 @@
 const http = require("http");
 
 // Define a port to listen for incoming requests
-const PORT = 7000;
-const PORT2 = 7500;
+const PORTONE = 7000;
+const PORTTWO = 7500;
 
-function handleRequest(request, response) {
+function handleRequestOne(request, response) {
     response.end("You are nice " + request.url);
 }
 
-var server = http.createServer(handleRequest);
-server.listen(PORT, function() {
-    console.log("Server listening on: http://localhost:" + PORT);
-});
-
-
-function handleRequest(request, response) {
+function handleRequestTwo(request, response) {
     response.end("You are weird " + request.url);
 }
 
-var server = http.createServer(handleRequest);
-server.listen(PORT2, function() {
-    console.log("Server listening on: http://localhost:" + PORT2);
+var serverOne = http.createServer(handleRequestOne);
+var serverTwo = http.createServer(handleRequestTwo);
+
+
+serverOne.listen(PORTONE, function() {
+    console.log("Server listening on: http://localhost:" + PORTONE);
+});
+
+serverTwo.listen(PORTTWO, function() {
+    console.log("Server listening on: http://localhost:" + PORTTWO);
 });
